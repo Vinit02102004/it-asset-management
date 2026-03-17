@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard - IT Asset Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="employee-page">
+    <div class="top-nav">
+        <div class="nav-left">
+            <div class="logo">
+                <i class="fas fa-laptop-code"></i>
+                <h1>IT Asset Management</h1>
+            </div>
+            <nav class="tabs">
+                <a href="#" class="tab active">Employee Dashboard</a>
+            </nav>
+        </div>
+        <div class="nav-right">
+            <div class="datetime">
+                <span class="time">09:45</span>
+                <span class="date">11-02-2026</span>
+            </div>
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="user-dropdown">
+                    <span class="user-name" id="employeeNameDisplay">John Anderson</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="employee-container">
+        <div class="employee-stats">
+            <div class="stat-circle">
+                <h2>0</h2>
+                <p>Total Requests</p>
+            </div>
+            <div class="employee-info">
+                <h3 id="employeeName">John Anderson</h3>
+                <p>Employee</p>
+            </div>
+        </div>
+        <div class="section-card">
+            <div class="section-header">
+                <h3>My Tickets</h3>
+                <button class="btn-primary" onclick="window.location.href='request-asset.html'">
+                    <i class="fas fa-plus"></i> Request IT Asset
+                </button>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>TICKET ID</th>
+                            <th>ASSET TYPE</th>
+                            <th>REQUEST DATE & TIME</th>
+                            <th>EXPECTED RETURN DATE</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTicketsBody">
+                        <!-- Rows will be dynamically inserted by script -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

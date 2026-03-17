@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Asset Management - Welcome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .password-field {
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .password-field.show {
+            display: block;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .input-with-placeholder input[type="password"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .input-with-placeholder input[type="password"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(170, 47, 207, 0.1);
+        }
+    </style>
+</head>
+
+<body class="welcome-page">
+    <div class="welcome-container">
+        <div class="top-bar">
+            <div class="top-left">
+                <i class="fas fa-laptop-code"></i>
+                <span>IT Asset Management</span>
+            </div>
+        </div>
+        <div class="welcome-content">
+            <div class="welcome-card">
+                <h1>Welcome Back</h1>
+                <p class="subtitle">Sign in with your Employee ID</p>
+
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="employeeId">Employee ID</label>
+                        <div class="input-with-placeholder">
+                            <input type="text" id="employeeId" required>
+                        </div>
+                    </div>
+
+                    <!-- Password field (only shows for admin) -->
+                    <div class="form-group password-field" id="passwordField">
+                        <label for="password">Password</label>
+                        <div class="input-with-placeholder">
+                            <input type="password" id="password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Your Role</label>
+                        <div class="role-selection">
+                            <div class="role-option">
+                                <input type="radio" id="roleEmployee" name="role" value="employee" checked>
+                                <label for="roleEmployee">
+                                    <i class="fas fa-user"></i>
+                                    <span>Employee</span>
+                                </label>
+                            </div>
+                            <div class="role-option">
+                                <input type="radio" id="roleAdmin" name="role" value="admin">
+                                <label for="roleAdmin">
+                                    <i class="fas fa-user-shield"></i>
+                                    <span>Admin</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="continue-btn">
+                        Continue →
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const roleAdmin = document.getElementById('roleAdmin');
+            const roleEmployee = document.getElementById('roleEmployee');
+            const passwordField = document.getElementById('passwordField');
+            const passwordInput = document.getElementById('password');
+
+            // Function to toggle password field
+            function togglePasswordField() {
+                if (roleAdmin.checked) {
+                    passwordField.classList.add('show');
+                    passwordInput.setAttribute('required', 'required');
+                } else {
+                    passwordField.classList.remove('show');
+                    passwordInput.removeAttribute('required');
+                    passwordInput.value = ''; // Clear password when hiding
+                }
+            }
+
+            // Add event listeners to radio buttons
+            roleAdmin.addEventListener('change', togglePasswordField);
+            roleEmployee.addEventListener('change', togglePasswordField);
+
+            // Initial check (in case admin is pre-selected, but employee is checked by default)
+            togglePasswordField();
+
+            // Handle form submission
+            const loginForm = document.getElementById('loginForm');
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const employeeId = document.getElementById('employeeId').value;
+                const role = document.querySelector('input[name="role"]:checked').value;
+
+                if (!employeeId) {
+                    alert('Please enter your Employee ID');
+                    return;
+                }
+
+                // If admin is selected, check password
+                if (role === 'admin') {
+                    const password = document.getElementById('password').value;
+
+                    // Simple password check (you can modify this)
+                    if (!password) {
+                        alert('Please enter your password');
+                        return;
+                    }
+
+                    // Check if password is correct (example: hardcoded admin password)
+                    if (password !== 'admin123') { // Change this to your desired admin password
+                        alert('Invalid password');
+                        return;
+                    }
+                }
+
+                // Store user info
+                let employeeName = `Employee ${employeeId}`;
+
+                localStorage.setItem('user', JSON.stringify({
+                    id: employeeId,
+                    name: employeeName,
+                    role: role,
+                }));
+
+                // Redirect based on role
+                if (role === 'admin') {
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    window.location.href = 'employee-dashboard.html';
+                }
+            });
+        });
+    </script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const roleAdmin = document.getElementById('roleAdmin');
+            const roleEmployee = document.getElementById('roleEmployee');
+            const passwordField = document.getElementById('passwordField');
+            const passwordInput = document.getElementById('password');
+
+            function togglePasswordField() {
+                if (roleAdmin.checked) {
+                    passwordField.classList.add('show');
+                    passwordInput.setAttribute('required', 'required');
+                } else {
+                    passwordField.classList.remove('show');
+                    passwordInput.removeAttribute('required');
+                    passwordInput.value = '';
+                }
+            }
+
+            roleAdmin.addEventListener('change', togglePasswordField);
+            roleEmployee.addEventListener('change', togglePasswordField);
+            togglePasswordField();
+
+            const loginForm = document.getElementById('loginForm');
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const employeeId = document.getElementById('employeeId').value;
+                const password = document.getElementById('password').value;
+                const role = document.querySelector('input[name="role"]:checked').value;
+
+                if (!employeeId) {
+                    alert('Please enter your Employee ID');
+                    return;
+                }
+
+                try {
+                    const response = await fetch('http://localhost:8000/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            employeeId,
+                            password,
+                            role
+                        })
+                    });
+
+                    const data = await response.json();
+                    if (!response.ok) {
+                        throw new Error(data.message || 'Login failed');
+                    }
+
+                    // Store token and user data
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+
+                    // Redirect based on role
+                    if (data.user.role === 'admin') {
+                        window.location.href = 'admin-dashboard.html';
+                    } else {
+                        window.location.href = 'employee-dashboard.html';
+                    }
+                } catch (error) {
+                    alert(error.message);
+                }
+            });
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

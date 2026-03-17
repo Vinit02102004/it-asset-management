@@ -1,0 +1,10 @@
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1wbG95ZWVJZCI6IkVNUDAwMSIsInJvbGUiOiJlbXBsb3llZSIsIm5hbWUiOiJKb2huIEFuZGVyc29uIiwiaWF0IjoxNzcxNTAyMTU0LCJleHAiOjE3NzE1ODg1NTR9.5THFDMN1F0PidWqGuCgEyJidJNKiqrWFQhm1y93pK-s",
+  "user": {
+    "id": 6,
+    "employeeId": "EMP001",
+    "name": "John Anderson",
+    "role": "employee",
+    "department": "Engineering"
+  }
+}

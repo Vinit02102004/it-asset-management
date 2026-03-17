@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - IT Asset Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="admin-page">
+    <div class="top-nav">
+        <div class="nav-left">
+            <div class="logo">
+                <i class="fas fa-laptop-code"></i>
+                <h1>IT Asset Management</h1>
+            </div>
+            <nav class="tabs">
+                <a href="#" class="tab active">Admin Dashboard</a>
+            </nav>
+        </div>
+        <div class="nav-right">
+            <div class="datetime">
+                <span class="time">09:44</span>
+                <span class="date">11-02-2026</span>
+            </div>
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="user-dropdown">
+                    <span class="user-name">Admin User</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="admin-container">
+        <!-- Stats cards will be populated by script -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h2>0</h2>
+                <p>Total Tickets</p>
+            </div>
+            <div class="stat-card">
+                <h2>0</h2>
+                <p>Pending</p>
+            </div>
+            <div class="stat-card">
+                <h2>0</h2>
+                <p>Approved – Not Collected</p>
+            </div>
+            <div class="stat-card">
+                <h2>0</h2>
+                <p>In Progress</p>
+            </div>
+            <div class="stat-card">
+                <h2>0</h2>
+                <p>Closed</p>
+            </div>
+            <div class="stat-card">
+                <h2>0</h2>
+                <p>Cancelled</p>
+            </div>
+        </div>
+
+        <!-- Request Inbox -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-title">
+                    <h3>Request Inbox</h3>
+                    <span class="badge">0 pending</span>
+                </div>
+                <div class="filter-tabs">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Pending</button>
+                    <button class="filter-btn">Approved</button>
+                    <button class="filter-btn">In Progress</button>
+                    <button class="filter-btn">Closed</button>
+                    <button class="filter-btn">Cancelled</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>TICKET ID</th>
+                            <th>EMPLOYEE NAME</th>
+                            <th>ASSET TYPE</th>
+                            <th>PURPOSE</th>
+                            <th>REQUEST DATE</th>
+                            <th>STATUS</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requestInboxBody">
+                        <!-- Rows will be dynamically inserted by script -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Awaiting Collection -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-title">
+                    <h3>Awaiting Collection</h3>
+                    <span class="badge">0</span>
+                </div>
+                <p class="section-subtitle">Approved tickets waiting for employee to collect their assets</p>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>TICKET ID</th>
+                            <th>EMPLOYEE</th>
+                            <th>ASSET TYPE</th>
+                            <th>PURPOSE</th>
+                            <th>EXPECTED RETURN</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="awaitingCollectionBody">
+                        <!-- Rows will be dynamically inserted by script -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Return & Closure -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-title">
+                    <h3>Return & Closure</h3>
+                </div>
+                <p class="section-subtitle">Mark assets as returned to close tickets and update inventory</p>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>TICKET ID</th>
+                            <th>EMPLOYEE</th>
+                            <th>ASSET</th>
+                            <th>EXPECTED RETURN</th>
+                            <th>STATUS</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="returnClosureBody">
+                        <!-- Rows will be dynamically inserted by script -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Asset Inventory -->
+        <div class="section-card">
+            <div class="section-header">
+                <div class="section-title">
+                    <h3>Asset Inventory</h3>
+                </div>
+                <div class="section-actions">
+                    <button class="btn-primary" id="addAssetBtn">
+                        <i class="fas fa-plus"></i> Add Asset
+                    </button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ASSET ID</th>
+                            <th>ASSET TYPE</th>
+                            <th>SERIAL NUMBER</th>
+                            <th>STATUS</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assetInventoryBody">
+                        <!-- Rows will be dynamically inserted by script -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Handover Modal (kept for compatibility, but script now uses prompt) -->
+    <div class="modal" id="handoverModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Handover Confirmation</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="ticket-info">
+                    <h4>Ticket: TKT-2024-003</h4>
+                    <p><strong>Employee:</strong> John Anderson</p>
+                    <p><strong>Asset Type:</strong> Keyboard</p>
+                </div>
+                <div class="form-group">
+                    <label>Select Asset to Assign</label>
+                    <select class="form-control">
+                        <option>Choose an available asset</option>
+                        <option>AST-K001 - Ergonomic Keyboard</option>
+                        <option>AST-K002 - Mechanical Keyboard</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Person Collecting Asset</label>
+                    <input type="text" class="form-control" value="John Anderson" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Collection Date & Time</label>
+                    <input type="text" class="form-control" value="2/11/2026, 9:44:48 AM" readonly>
+                </div>
+                <div class="confirmation-check">
+                    <input type="checkbox" id="confirmHandover">
+                    <label for="confirmHandover">I confirm that the asset has been handed over to the employee</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary cancel-btn">Cancel</button>
+                <button class="btn-primary confirm-btn">Complete Handover</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
